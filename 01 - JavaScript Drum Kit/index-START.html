@@ -59,8 +59,61 @@
 
 <script>
 
+  function playsound(e) {
+
+    // This output the entire object
+    // console.log(e);
+
+    // This will output the keycode number for that key button
+    // console.log(`The keycode is ${e.keyCode}`);
+
+    /* do not use 'audio[data-key=65]' because it looks like you're looking
+    for a value in an array, but 'e' is an object.*/
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+    if (!audio) return; // stop the function from running all together
+
+    audio.currentTime = 0; // rewind to the start
+    console.log(audio);
+    // outputs example <audio data-key="65" src="sounds/clap.wav></audio>"
+
+    audio.play(); // play() is a built-in method
+    // key.addClass('playing');  jQuery version
+    key.classList.add('playing');
+  }
+
+  function removeTransition(e) {
+    // console.log(e);
+    /* You'll see six TransitionEvent objects: four for borders, a shadow,
+    and the yellow glow */
+
+    /* Look at the transition with the longest duration, select its key's propertyName
+    and use a false operator */
+
+    if (e.propertyName !== 'transform') return; // skip it if it's not a transform
+    this.classList.remove('playing')
+  }
+
+  // STEP 1: SELECT AND STORE ALL THE CLASS WITH 'KEY'
+  const keys = document.querySelectorAll('.key');
+
+  // STEP 2: MAKE SOUND WITH THE KEYBOARD
+  window.addEventListener('keydown',playsound);
+
+  // STEP 2.5: MAKE FUNCTION playsound
+
+  // STEP 3: REMOVE THE CSS TRANSITION WHEN THE KEY IS PRESSED AKA RETURNS BACK TO NORMAL
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+  // STEP 3.5 MAKE FUNCTION removeTransition
+
 </script>
 
 
 </body>
 </html>
+
+<!-- Refer to the link below to know other event trigger -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/Events -->
