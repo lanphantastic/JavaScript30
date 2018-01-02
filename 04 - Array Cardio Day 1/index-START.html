@@ -40,14 +40,14 @@
     //   }
     // });
 
-    console.log('LIST OF INVENTORS BORN IN THE 1500s');
+    console.log('Q1. LIST OF INVENTORS BORN IN THE 1500s');
     console.table(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
     const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
 
-    console.log('\nAN ARRAY OF INVENTOR\'S FIRST AND LAST NAME');
+    console.log('\nQ2. AN ARRAY OF INVENTOR\'S FIRST AND LAST NAME');
     console.log(fullNames);
 
     // Array.prototype.sort()
@@ -62,7 +62,7 @@
 
     const ordered = inventors.sort((a,b) => a.year > b.year ? 1 : -1);
 
-    console.log('\nSORT THE INVENTORS BY BIRTHDATE, OLDEST TO YOUNGEST');
+    console.log('\nQ3. SORT THE INVENTORS BY BIRTHDATE, OLDEST TO YOUNGEST');
     console.table(ordered);
 
     // Array.prototype.reduce()
@@ -71,9 +71,23 @@
       return total + (inventor.passed - inventor.year);
     },0);
 
-    console.log(totalYears);
+    console.log(`\nQ4. About ${totalYears} years were how many inventors have lived.`);
 
     // 5. Sort the inventors by years lived
+
+    // PRE-ES 2015 WAY
+    // const longLife = inventors.sort(function(youngerPerson, olderPerson){
+    //   if (youngerPerson.year.length > olderPerson.year.length) {
+    //     return 1;
+    //   } else {
+    //     return -1;
+    //   }
+    // });
+
+    const longLife = inventors.sort((olderPerson, youngerPerson) => olderPerson.year.length > youngerPerson.year.length ? 1 : -1);
+
+    console.log('\nQ5. INVENTORS BY YEARS LIVED');
+    console.table(longLife);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
