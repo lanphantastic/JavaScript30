@@ -43,6 +43,10 @@
       background-size:cover;
       background-position:center;
       flex: 1; /* evenly distribute the photo across the site*/
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
     }
 
 
@@ -52,10 +56,12 @@
     .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
     .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
 
-    .panel > * {
+    /*flex item*/
+    .panel > * { /* all the children in each 'panel'. In this case, we'll see each of the three words per panel */
       margin:0;
       width: 100%;
       transition:transform 0.5s;
+      border: 1px solid red;
     }
 
     .panel p {
